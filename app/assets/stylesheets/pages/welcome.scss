@@ -19,15 +19,17 @@
   left: 0;
 }
 
+
   h5 {
     color: #B3B0A9;
     // $gray: #0E0000;
   }
 
+
 .speech {
-  font-size: 21px;
+  font-size: 16px;
   color: #A7ACAC;
-  font-family:  "Open Sans", "Helvetica", "sans-serif";
+  // font-family:  "Open Sans", "Helvetica", "sans-serif";
   position: relative;
   width: 80%;
   height: 116px;
@@ -68,7 +70,130 @@
   border-color: #fff transparent transparent #fff;
 }
 
+.chat-bot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
 
+.bot-div {
+  input {
+    border: none;
+  }
+}
 
+.jobot-speech {
+  padding: 50px;
+  width: 600px;
+  height: 200px;
+  position: relative;
+  background: rgba(0,0,0,0.1);
+  border-radius: 15px;
+  h5 {
+    font-size: 30px;
+    color: rgba(0,0,0,0.2);
+    text-align: center;
+  }
+}
 
+.jobot-speech:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: rgba(0,0,0,0.1);
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
 
+.jobot-speech-user {
+  padding: 50px;
+  width: 600px;
+  height: 200px;
+  position: relative;
+  background: rgba(0,0,0,0.1);
+  border-radius: 15px;
+  margin: 60px 0;
+  text-align: center;
+  input {
+    width: 500px;
+    height: 36px;
+    font-size: 30px;
+    color: rgba(0,0,0,0.2);
+    background: transparent;
+  }
+  ::placeholder {
+    color: rgba(0,0,0,0.2);
+    text-align: center;
+    background: transparent;
+  }
+}
+
+.jobot-robot-chat {
+  position: absolute;
+  left:  -120px;
+  top: 20%;
+
+}
+
+.jobot-speech-user:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 95%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: rgba(0,0,0,0.1);
+  border-bottom: 0;
+  border-right: 0;
+  margin-left: -10px;
+  margin-bottom: -20px;
+}
+
+#new_guest_user {
+  position: relative
+}
+
+.js-example-basic-multiple {
+  background-color: transparent;
+  width: 500px;
+}
+.select2 .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: transparent;
+  font-family: "Montserrat";
+  font-size: 30px;
+  color: rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.select2 .select2-container--default.select2-container--focus .select2-selection--multiple {
+  background-color: transparent;
+}
+
+.radio-btn {
+  width: 200px !important;
+}
+
+.radio-btn-container {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  .form-check {
+    display: flex !important;
+    width: 150px;
+  }
+  label {
+    font-size: 30px;
+    color: rgba(0,0,0,0.2);
+  }
+}

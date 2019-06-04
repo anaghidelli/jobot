@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -12,6 +14,7 @@ class User < ApplicationRecord
   has_many :user_languages
   has_many :languages, through: :user_languages
 
+<<<<<<< HEAD
 # class User < ApplicationRecord
 #   def self.new_with_session(params, session)
 #     super.tap do |user|
@@ -32,6 +35,17 @@ def self.from_omniauth(auth)
     # If you are using confirmable and the provider(s) you use validate emails,
     # uncomment the line below to skip the confirmation emails.
     # user.skip_confirmation!
+=======
+  def reject_unavailable_saved_jobs
+    saved_jobs.map(&:job).reject do |job|
+      begin
+        open(job.url)
+        return false
+      rescue => e
+        return true
+      end
+    end
+>>>>>>> cda0b318de286e615c710f7ec0c17d58214f860c
   end
 end
 

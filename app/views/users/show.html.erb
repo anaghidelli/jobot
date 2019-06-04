@@ -1,0 +1,70 @@
+<div class="user-container">
+  <div class="user-info">
+
+    <div class="profile">
+      <div class="user-avatar">
+        <%= image_tag "default-user.png", class: "avatar-large", alt: "avatar-large" %>
+      </div>
+      <div class="user-name">
+        <h2 class="mb-0"> <%= @user.name %> </h2>
+        <p class="mb-0"> <%= @user.email %> </p>
+      </div>
+    </div>
+
+    <div class="user-form">
+      <%= render 'shared/preference_form' %>
+    </div>
+  </div>
+
+  <div class="user-jobs">
+    <div class="header-text border-bottom-0">
+      <h2>You have XX saved jobs</h2>
+    </div>
+
+      <div class="card-saved">
+        <div class="card-info">
+          <h3>job title</h3>
+          <h5>date</h5>
+          <p>description</p>
+        </div>
+        <div class="overlay">
+          <%= link_to 'View Job', jobs_path %>
+        </div>
+      </div>
+
+      <div class="card-saved">
+        <div class="card-info">
+          <h3>job title</h3>
+          <h5>date</h5>
+          <p>description</p>
+        </div>
+        <div class="overlay">
+          <%= link_to 'View Job', jobs_path %>
+        </div>
+      </div>
+
+      <div class="card-saved">
+        <div class="card-info">
+          <h3>job title</h3>
+          <h5>date</h5>
+          <p>description</p>
+        </div>
+        <div class="overlay">
+          <%= link_to 'View Job', jobs_path %>
+        </div>
+      </div>
+
+      <div class="card-saved">
+        <div class="card-info">
+          <h3>job title</h3>
+          <h5>date</h5>
+          <p>description</p>
+        </div>
+        <div class="overlay">
+          <%= link_to 'View Job', jobs_path %>
+        </div>
+      </div>
+
+  </div>
+
+</div>

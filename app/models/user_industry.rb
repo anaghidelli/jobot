@@ -1,4 +1,5 @@
 class UserIndustry < ApplicationRecord
-  has_many :industries
-  has_many :users
+  belongs_to :user, optional: true
+  belongs_to :guest_user, optional: true
+  belongs_to :industry
 end

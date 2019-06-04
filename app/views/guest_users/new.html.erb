@@ -1,82 +1,163 @@
-<div class="container">
-  <%= simple_form_for @guest_user do |f| %>
+<div class="chat-bot-container">
+  <div class="container d-flex justify-content-center align-items-center" style="">
+    <%= simple_form_for @guest_user do |f| %>
+    <%= image_tag 'default-robot.png', class: "jobot-robot-chat" %>
 
-    <div id="bot-start" class='bot-div'>
-      <h5>Let’s get started!</h5>
-      <h5>What your name?</h5>
-      <%= f.input :name, as: :string, input_html: { class: 'bot-input' } %>
-    </div>
+      <div id="bot-start" class='bot-div'>
+        <div class="jobot-speech">
+          <h5>Let’s get started!</h5>
+          <h5>What is your name?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.input :name, as: :string, label: false,placeholder: "your name here...", input_html: { class: 'bot-input' } %>
+        </div>
+      </div>
 
-    <div id="bot-name" class='bot-div' hidden>
-      <h5>Ok #{name}, what job titles are you looking for?</h5>
-      <%= f.input :job_title, as: :string, input_html: { class: 'bot-input' } %>
-    </div>
+      <div id="bot-name" class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>Ok #{name}, what job titles are you looking for?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.input :job_title, as: :string, label: false, placeholder: "job title here...", input_html: { class: 'bot-input' } %>
+        </div>
+      </div>
 
-    <div id="bot-location" class='bot-div' hidden>
-    <h5>Where do you want to work?</h5>
-      <%= f.input :location, as: :string, input_html: { class: 'bot-input' } %>
-    </div>
+      <div id="bot-location" class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>Where do you want to work?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.input :location, as: :string, label: false, placeholder: "type your location here...",input_html: { class: 'bot-input' } %>
+        </div>
+      </div>
 
-    <div id="" class='bot-div' hidden>
-    <h5>Do you need a visa to work in #{location}?</h5>
-    <%= f.input :visa_sponsor, as: :radio_buttons, input_html: { class: 'bot-input', checked: false } %>
-    </div>
+      <div id="" class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>Do you need a visa to work in #{location}?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <div class="radio-btn-container">
+          <div style="width: 100px; display: flex, justify-content: center;">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional radio-btn bot-input" type="radio" value="true" name="guest_user[visa_sponsor]" id="guest_user_visa_sponsor_true">
+              <label class="collection_radio_buttons" for="guest_user_visa_sponsor_true">Yes</label>
+            </div>
+          </div>
+          <div style="width: 100px; display: flex, justify-content: center;">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional radio-btn bot-input" readonly="readonly" type="radio" value="false" name="guest_user[visa_sponsor]" id="guest_user_visa_sponsor_false">
+              <label class="collection_radio_buttons" for="guest_user_visa_sponsor_false">No</label>
+            </div>
+          </div>
+          </div>
+        </div>
+        <%#= f.input :visa_sponsor, as: :radio_buttons, input_html: { class: 'radio-btn bot-input', checked: false } %>
+      </div>
 
-    <div class='bot-div' hidden>
-    <h5>What programming languages do you know?</h5>
-    <%= f.association :skills, as: :select, collection: Skill.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
-    </div>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>What programming languages do you know?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.association :skills, as: :select, label: false, collection: Skill.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
+        </div>
+      </div>
 
 
-    <div class='bot-div' hidden>
-    <h5>What human languages do you speak?</h5>
-    <%= f.association :languages, as: :select, collection: Language.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
-    </div>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>What human languages do you speak?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.association :languages, as: :select, label: false, collection: Language.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
+        </div>
+      </div>
 
-    <div class='bot-div' hidden>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>What's your minimum total compensation (full year)?</h5>
+        </div>
+         <div class="jobot-speech-user">
+          <%= f.input :total_compensation, as: :string, label: false, placeholder: "e.g. 28,000", input_html: { class: 'bot-input' } %>
+        </div>
+      </div>
 
-    <h5>What's your target total compensation (full year)?</h5>
-    <!-- here I have to put the fields themselfs that are going to be linked to the slider -->
-    <div id="compensation_slider"></div>
-    <%= f.input :total_compensation, input_html: { id: "totalCompensation", class: 'bot-input' }  %>
-    <p class="d-none" id="total_compensation_lower"></p>
-    <p class="d-none" id="total_compensation_upper"></p>
-    </div>
+<!--     <div class="jobot-speech-user">
+          <div id="compensation_slider"></div>
+            <p class="" id="total_compensation_lower"></p>
+            <p class="" id="total_compensation_upper"></p>
+            <%#= f.input :total_compensation, label: false, input_html: { id: "totalCompensation", class: 'bot-input d-none' }  %>
+          </div>
+        </div> -->
 
-    <div class='bot-div' hidden>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>How many years of professional experience do you have?</h5>
+        </div>
+          <!-- here I have to put the fields themselfs that are going to be linked to the slider -->
+        <div class="jobot-speech-user">
+          <div id="experience_slider" class='bot-div'></div>
+            <%= f.input :years_experience, label: false, input_html: { id: "yearsExperience", class: 'bot-input' }  %>
+        </div>
+      </div>
 
-    <h5>How many years of professional experience do you have?</h5>
-    <!-- here I have to put the fields themselfs that are going to be linked to the slider -->
-    <div id="experience_slider" class='bot-div'></div>
-    <%= f.input :years_experience, input_html: { id: "yearsExperience", class: 'bot-input' }  %>
-    </div>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>Which industries are you interested in?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.association :industries, as: :select, label: false, collection: Industry.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
+        </div>
+      </div>
 
-    <div class='bot-div' hidden>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>What's you education level?</h5>
+        </div>
+        <div class="jobot-speech-user">
+         <%= f.input :education_degree, as: :select, label: false, collection: @education_degrees, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true, } %>
+        </div>
+      </div>
 
-    <h5>Which industries are you interested in?</h5>
-    <%= f.association :industries, as: :select, collection: Industry.all, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>What type of employment are you looking for?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <%= f.input :employment_type, as: :select, label: false, collection: Job.all.map(&:employment_type).uniq.reject(&:blank?), input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
+        </div>
+      </div>
 
-    </div>
+      <div class='bot-div' hidden>
+        <div class="jobot-speech">
+          <h5>Are you interested in jobs posted over 30 days ago?</h5>
+        </div>
+        <div class="jobot-speech-user">
+          <div class="radio-btn-container">
+          <div style="width: 100px; display: flex, justify-content: center;">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional radio-btn bot-input" type="radio" value="true" name="guest_user[visa_sponsor]" id="guest_user_visa_sponsor_true">
+              <label class="collection_radio_buttons" for="guest_user_visa_sponsor_true">Yes</label>
+            </div>
+          </div>
+          <div style="width: 100px; display: flex, justify-content: center;">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional radio-btn bot-input" readonly="readonly" type="radio" value="false" name="guest_user[visa_sponsor]" id="guest_user_visa_sponsor_false">
+              <label class="collection_radio_buttons" for="guest_user_visa_sponsor_false">No</label>
+            </div>
+          </div>
+          </div>
+        </div>
+          <%#= f.input :date_posted, as: :radio_buttons, input_html: { class: 'bot-input' } %>
+        <div class="btn-div">
+          <%= f.submit "Finish", class: "button singup-btn" %>
+        </div>
+        </div>
 
-    <div class='bot-div' hidden>
+      </div>
 
-    <h5>What's you education level?</h5>
-    <%= f.input :education_degree, as: :select, collection: @education_degrees, input_html: { class: 'js-example-basic-multiple bot-input', multiple: true, } %>
-    </div>
+    <% end %>
+    <%#= image_tag 'default-robot.png' %>
 
-    <div class='bot-div' hidden>
-
-    <h5>What type of employment are you looking for?</h5>
-    <%= f.input :employment_type, as: :select, collection: Job.all.map(&:employment_type).uniq.reject(&:blank?), input_html: { class: 'js-example-basic-multiple bot-input', multiple: true } %>
-    </div>
-
-    <div class='bot-div' hidden>
-
-    <h5>Are you interested in jobs posted over 30 days ago?</h5>
-    <%= f.input :date_posted, as: :radio_buttons, input_html: { class: 'bot-input' } %>
-    <%= f.submit "Finish" %>
-    </div>
-
-  <% end %>
-
+  </div>
 </div>

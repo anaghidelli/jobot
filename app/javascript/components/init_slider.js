@@ -2,6 +2,8 @@ import noUiSlider from 'nouislider';
 
 const initSlider = (elementId) => {
   const slider = document.getElementById(elementId);
+  if (slider) {
+
   noUiSlider.create(slider, {
       start: [100000, 900000],
       connect: true,
@@ -29,14 +31,20 @@ const initSlider = (elementId) => {
       snapValues[handle].innerHTML = values[handle];
       totalCompensation.value = `${snapValues[0].innerHTML}-${snapValues[1].innerHTML}`
   });
+  }
 }
 
 
 
 const initOneHandleSlider = (elementId) => {
   const oneHandleSlider = document.getElementById(elementId);
+  let startYear = 0
+  if(document.querySelector('.years_experience') != null) {
+    startYear = document.querySelector('.years_experience').innerHTML;
+  }
+  if (oneHandleSlider) {
   noUiSlider.create(oneHandleSlider, {
-    start: 1,
+    start: startYear,
     behaviour: 'tap',
     connect: [true, false],
     range: {
@@ -52,6 +60,7 @@ const initOneHandleSlider = (elementId) => {
     // priceSliderText.innerHTML = '£' + currentPrice;
     yearsExperience.value = years;
   });
+  }
 }
 export { initSlider }
 export { initOneHandleSlider }

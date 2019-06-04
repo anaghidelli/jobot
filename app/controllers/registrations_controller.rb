@@ -1,3 +1,4 @@
+
 class RegistrationsController < Devise::RegistrationsController
   after_action :merge_users, only: [:create]
 
@@ -14,7 +15,10 @@ class RegistrationsController < Devise::RegistrationsController
       education_degree: @guest_user.education_degree,
       visa_sponsor: @guest_user.visa_sponsor,
       date_posted: @guest_user.date_posted,
-      employment_type: @guest_user.employment_type
+      employment_type: @guest_user.employment_type,
+      skill_ids: @guest_user.skill_ids,
+      language_ids: @guest_user.language_ids,
+      industry_ids: @guest_user.industry_ids
     )
     @guest_user.destroy
   end

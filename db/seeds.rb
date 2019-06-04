@@ -39,9 +39,21 @@ Company.destroy_all
 # Interaction Designer
 # Front-End Designer
 # Front-End Developer
-
-
-
+# Mobile Developer
+# Full-Stack Developer
+# Software Developers
+# WordPress Developer
+# Frameworks Specialist
+# Ruby on Rails Developer
+# Python Developer
+# Business Systems Analyst
+# Systems Engineer
+# Systems Administrator
+# Database Administrator
+# Data Architect
+# Data Modeler
+# Data Analyst
+# Data Scientist
 
 Language.destroy_all
 
@@ -88,6 +100,56 @@ skill = Skill.create(name: "HTML")
 skill = Skill.create(name: "CSS")
 
 
+# puts "Scraping jobs from reed.co.uk"
+
+# @url = "https://www.reed.co.uk/jobs/web-developer-jobs-in-london"
+# @html_doc = Nokogiri::HTML(open(@url).read)
+# @html_doc.search(".job-result").first(25).each do |element|
+#   compensation = element.search('.salary').text.strip
+#   location = element.search('.location').text.split.slice(2)
+#   date = element.search('.posted-by').text.strip
+#   show_url = element.search(".title a").attribute('href').value
+#   full_url = "https://www.reed.co.uk#{show_url}"
+#   html_show = Nokogiri::HTML(open(full_url).read)
+#   logo = html_show.search('.logo-wrap meta').attr('content')&.value
+#   company_url = html_show.search('.logo-wrap').attr('href')&.value
+#     if company_url.match(/company-profile/)
+#         company_show = Nokogiri::HTML(open("https://www.reed.co.uk#{company_url}").read)
+#         company_industry = company_show.search('.information__item')
+#         industry_name = company_industry.find { |e| e.search('.information__title').text.strip == "Sector" }
+#         industry_name = industry_name.search('.information__description').text.strip
+#         if Industry.find_by(name: industry_name)
+#           industry = Industry.find_by(name: industry_name)
+#         else
+#           industry = Industry.new(name: industry_name)
+#           industry.save
+#         end
+#     end
+#     company_name = html_show.search('.posted span').text.strip.capitalize
+#     "company: #{company_name}, logo: #{logo}"
+#     if Company.find_by(name: company_name)
+#       company = Company.find_by(name: company_name)
+#       else
+#         company = Company.new(name: company_name)
+#         company.remote_logo_url = logo.nil? ? './app/assets/images/default-robot.png' : logo
+#         company.save
+#     end
+#     if CompanyIndustry.where(company: company, industry: industry).empty? && industry
+#       CompanyIndustry.create(company: company, industry: industry)
+#     end
+#     company
+#     job = Job.create!(
+#       job_title: html_show.search(".col-xs-12 h1").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
+#       description: html_show.search(".description").text.strip,
+#       total_compensation: html_show.search(".salary").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
+#       location: html_show.search('.location span[data-qa="localityLbl"]').text.strip.gsub( /(\r\n)|(\s)/m, "" ),
+#       employment_type: html_show.search(".time").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
+#       date_posted: Date.parse(html_show.search('.posted meta').attr('content')&.value),
+#       company: company,
+#       url: full_url
+#     )
+#   end
+
 # puts "Scraping jobs from indeed.co.uk"
 #     url = "https://www.indeed.co.uk/Web-Developer-jobs-in-London"
 
@@ -105,61 +167,6 @@ skill = Skill.create(name: "CSS")
 
 #     )
 #   end
-
-
-puts "Scraping jobs from reed.co.uk"
-
-  @url = "https://www.reed.co.uk/jobs/web-developer-jobs-in-london"
-  @html_doc = Nokogiri::HTML(open(@url).read)
-  @html_doc.search(".job-result").first(25).each do |element|
-    compensation = element.search('.salary').text.strip
-    location = element.search('.location').text.split.slice(2)
-    date = element.search('.posted-by').text.strip
-    show_url = element.search(".title a").attribute('href').value
-    full_url = "https://www.reed.co.uk#{show_url}"
-    html_show = Nokogiri::HTML(open(full_url).read)
-    logo = html_show.search('.logo-wrap meta').attr('content')&.value
-    company_url = html_show.search('.logo-wrap').attr('href')&.value
-
-    if company_url.match(/company-profile/)
-        company_show = Nokogiri::HTML(open("https://www.reed.co.uk#{company_url}").read)
-        company_industry = company_show.search('.information__item')
-        industry_name = company_industry.find { |e| e.search('.information__title').text.strip == "Sector" }
-        industry_name = industry_name.search('.information__description').text.strip
-        if Industry.find_by(name: industry_name)
-          industry = Industry.find_by(name: industry_name)
-        else
-          industry = Industry.new(name: industry_name)
-          industry.save
-        end
-    end
-
-    company_name = html_show.search('.posted span').text.strip.capitalize
-    "company: #{company_name}, logo: #{logo}"
-
-    if Company.find_by(name: company_name)
-      company = Company.find_by(name: company_name)
-      else
-        company = Company.new(name: company_name)
-        company.remote_logo_url = logo.nil? ? './app/assets/images/default-robot.png' : logo
-        company.save
-    end
-
-    if CompanyIndustry.where(company: company, industry: industry).empty? && industry
-      CompanyIndustry.create(company: company, industry: industry)
-    end
-
-    company
-    job = Job.create!(
-      job_title: html_show.search(".col-xs-12 h1").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
-      description: html_show.search(".description").text.strip,
-      total_compensation: html_show.search(".salary").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
-      location: html_show.search('.location span[data-qa="localityLbl"]').text.strip.gsub( /(\r\n)|(\s)/m, "" ),
-      employment_type: html_show.search(".time").text.strip.gsub( /(\r\n)|(\s)/m, "" ),
-      date_posted: Date.parse(html_show.search('.posted meta').attr('content')&.value),
-      company: company
-    )
-  end
 
 # puts "Scraping monster jobs!"
 

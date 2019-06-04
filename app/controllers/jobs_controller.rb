@@ -25,4 +25,5 @@ class JobsController < ApplicationController
 
   def destroy
   end
+
 end

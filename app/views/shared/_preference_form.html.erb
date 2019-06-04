@@ -1,0 +1,27 @@
+<%=  simple_form_for @user do |f| %>
+  <div class="container-form">
+    <%= f.input :job_title, class: 'rounded' %>
+    <%= f.input :location, class: 'form-input' %>
+    <%= f.input :visa_sponsor, as: :radio_buttons %>
+  </div>
+  <div>
+    <%= f.association :skills, as: :select, collection: Skill.all, input_html: { class: 'js-example-basic-multiple form-box', multiple: true } %>
+    <%= f.association :languages, as: :select, collection: Language.all, input_html: { class: 'js-example-basic-multiple form-box', multiple: true } %>
+  </div>
+
+  <div>
+
+    <%= f.input :total_compensation, label: "Compensation (e.g. 28,000) £", as: :string %>
+
+    <div id="experience_slider" class="m-4" ></div>
+    <%= f.input :years_experience, input_html: { id: "yearsExperience", placeholder: @user.years_experience }  %>
+
+    <%= f.input :education_degree, as: :select, collection: @education_degrees, input_html: { class: 'js-example-basic-multiple form-box' } %>
+
+    <%= f.input :employment_type, as: :select, collection: Job.all.map(&:employment_type).uniq.reject(&:blank?), input_html: { class: 'js-example-basic-multiple' } %>
+
+    <%= f.input :date_posted, label: "Post over 30 days old?", as: :radio_buttons %>
+    <%= f.submit "Refresh", class: "singup-btn m-3" %>
+  </div>
+  <div class="years_experience"><%= @user.years_experience %> </div>
+<% end %>
