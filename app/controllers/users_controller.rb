@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     # @user.education_degree = @degreez
     @user.update(set_params)
     ReedScraper.new(@user.job_title, @user.location, @user.date_posted).scrape
-    # MonsterScraper.new(@user.job_title, @user.location, @user.date_posted).scrape
+    MonsterScraper.new(@user.job_title, @user.location, @user.date_posted).scrape
     redirect_to jobs_path
   end
 

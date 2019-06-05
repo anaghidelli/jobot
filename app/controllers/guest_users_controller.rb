@@ -15,6 +15,7 @@ class GuestUsersController < ApplicationController
     @guest_user.employment_type = params[:guest_user][:employment_type]
     @guest_user.save
     reed_scrape(@guest_user.job_title, @guest_user.location, @guest_user.date_posted)
+    monster_scrape(@guest_user.job_title, @guest_user.location, @guest_user.date_posted).scrape
     session[:guest_user_id] = @guest_user.id
     redirect_to new_user_registration_path
   end
@@ -24,6 +25,11 @@ class GuestUsersController < ApplicationController
   def reed_scrape(job_title, location, date_posted)
     puts "Scraping jobs from reed.co.uk"
     ReedScraper.new(job_title, location, date_posted).scrape
+  end
+
+  def monster_scrape(job_title, location, date_posted)
+    MonsterScraper.new(job_title, location, date_posted).scrape
+
   end
 
   def education_degrees
