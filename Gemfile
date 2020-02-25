@@ -18,7 +18,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.10'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 
